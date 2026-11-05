@@ -1,4 +1,4 @@
-# fabric-client-core
+# ModuLib
 
 Reusable Java utilities for Fabric client mods. The library has no Minecraft dependency and can be embedded into a mod JAR.
 

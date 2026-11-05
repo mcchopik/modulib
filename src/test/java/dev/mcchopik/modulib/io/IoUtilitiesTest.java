@@ -1,4 +1,4 @@
-package dev.mcchopik.fabriccore.io;
+package dev.mcchopik.modulib.io;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;

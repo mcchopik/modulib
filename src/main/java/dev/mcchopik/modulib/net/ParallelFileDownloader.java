@@ -1,7 +1,7 @@
-package dev.mcchopik.fabriccore.net;
+package dev.mcchopik.modulib.net;
 
-import dev.mcchopik.fabriccore.io.AtomicFiles;
-import dev.mcchopik.fabriccore.io.Hashes;
+import dev.mcchopik.modulib.io.AtomicFiles;
+import dev.mcchopik.modulib.io.Hashes;
 
 import java.io.IOException;
 import java.io.InputStream;

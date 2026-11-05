@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "fabric-client-core"
+rootProject.name = "modulib"

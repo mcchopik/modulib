@@ -1,4 +1,4 @@
-package dev.mcchopik.fabriccore.io;
+package dev.mcchopik.modulib.io;
 
 import java.io.IOException;
 import java.io.InputStream;

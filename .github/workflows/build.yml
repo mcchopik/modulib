@@ -24,6 +24,6 @@ jobs:
       - run: gradle build --no-daemon
       - uses: actions/upload-artifact@v6
         with:
-          name: fabric-client-core-jars
+          name: modulib-jars
           path: build/libs/*.jar
           if-no-files-found: error
