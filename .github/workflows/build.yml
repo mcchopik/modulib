@@ -3,6 +3,7 @@ name: Build library
 on:
   push:
     branches: [ main ]
+    tags: [ 'v*' ]
   pull_request:
   workflow_dispatch:
 
@@ -21,9 +22,35 @@ jobs:
       - uses: gradle/actions/setup-gradle@v5
         with:
           gradle-version: '9.5.1'
-      - run: gradle build --no-daemon
+      - name: Build
+        run: |
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            gradle build --no-daemon -Pversion="${GITHUB_REF_NAME#v}"
+          else
+            gradle build --no-daemon
+          fi
       - uses: actions/upload-artifact@v6
         with:
           name: modulib-jars
           path: build/libs/*.jar
           if-no-files-found: error
+
+  release:
+    if: github.ref_type == 'tag'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v6
+        with:
+          name: modulib-jars
+          path: release-artifact
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" release-artifact/*.jar \
+            --repo "${GITHUB_REPOSITORY}" \
+            --title "ModuLib ${GITHUB_REF_NAME#v}" \
+            --generate-notes
